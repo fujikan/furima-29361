@@ -28,7 +28,7 @@ Things you may want to cover:
 * has_many :comments
 * has_many :purchasers
 
-### Item
+### Items
 |種類|Column|Type|Options|
 |:----|:----|:----|:----|
 画像|    |  | null: false  | ActiveStorage |
