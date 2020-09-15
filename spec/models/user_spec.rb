@@ -23,6 +23,12 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
+    it "emailに@が含まれていないと登録できないこと" do
+      @user.email = "****furima.com"
+      @user.valid?
+      # binding.pry
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
 
     it "重複したemailが存在する場合登録できないこと" do
       @user.save
