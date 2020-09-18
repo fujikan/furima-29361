@@ -6,16 +6,14 @@ function price(){
          const value = priceInput.value; 
          
        if (value >= 300 && value <= 9999999){
-         let fee = value /10
-         let gains = value - fee
-         add_tax.textContent = fee;
-         profit.textContent = gains;
+         var fee = value /10
+         var gains = value - fee
      } else {
-       let fee = '-';
-       let gains = '-';
-       add_tax.textContent = fee;
-       profit.textContent = gains;
-     }
+       var fee = '-';
+       var gains = '-';
+      }
+      add_tax.textContent = fee;
+      profit.textContent = gains;
    });
   
   }
