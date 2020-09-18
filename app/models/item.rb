@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :name,  length: { maximum: 40 } 
   validates :description, length: { maximum: 1000 } 
   validates :category_id, :condition_id, :postage_id, :prefecture_id, :handling_time_id, numericality: { other_than: 1 }
-  validates :price, numericality: { greater_than: 300, less_than: 9999999}
-  validates :price, numericality: { with: /\A[A-Za-z]\w*\z/ }
+  validates :price, format: { greater_than: 300, less_than: 9999999}
+  validates :price, format: { with: /\A[A-Za-z]\w*\z/ }
   end
 end
