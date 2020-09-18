@@ -10,11 +10,11 @@ class Item < ApplicationRecord
   belongs_to :user
 
   with_options presence: true do
-  validates :name, :description, :price, presence: true
-  validates :name, presence: true, length: { maximum: 40 } 
-  validates :description, presence: true, length: { maximum: 1000 } 
+  validates :name, :description, :image, :price
+  validates :name,  length: { maximum: 40 } 
+  validates :description, length: { maximum: 1000 } 
   validates :category_id, :condition_id, :postage_id, :prefecture_id, :handling_time_id, numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { greater_than: 300, less_than: 9999999}
-  validates :price, presence: true, numericality: { with: /\A[A-Za-z]\w*\z/ }
+  validates :price, numericality: { greater_than: 300, less_than: 9999999}
+  validates :price, numericality: { with: /\A[A-Za-z]\w*\z/ }
   end
 end
