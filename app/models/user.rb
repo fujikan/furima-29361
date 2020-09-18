@@ -12,4 +12,5 @@ class User < ApplicationRecord
     validates :first_name_kana, format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "は全角で入力してください。"}
     validates :birth_day
   end
+  has_many :items
 end
