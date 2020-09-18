@@ -21,10 +21,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Name can't be blank")
        end
 
+      it "nameが40文字以内でないと出品できないこと" do
+        @item.name = 'kd;fk:fsdfke:;fpokewdpfowmfepflewfmeopfew;:fmewpofkwe;fkpoewfewfoewp@flwemfkwelfwek;:fl;,ew;fk:welfkkwpef;lsmfojpweo;flwkf'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+       end
+
       it "descriptionが空では出品できないこと" do
        @item.description = nil
        @item.valid?
        expect(@item.errors.full_messages).to include("Description can't be blank")
+      end
+
+      it "descriptionが1000文字以内でないと出品できないこと" do
+       @item.description = 'gjlldflfefleflefrelferfefreferferferfrfereregrtrthtrgrjrtgkrgrjttorjrtigjjgrhgregrpgjeogpgoerjgeogjeroigjerogjergoejgoegjeogjjeropgrporgrpgerpgjprgkrpgeprgp@rjgr@pogkr@gkjrpogr@pg@rgjrgoergi@prjhk@prhkrtthkrthorpth@rtphjr@ptghkjrtohkprtokh@rtphrtkhjrthkrjnhorphjgoflhjfpoghkjfghfgophkrptegdgdgdgrgegjergfjerogjgiorjgogjrgoirgjriokgjfgjrtoigrogjroigropgjrgrjigrigjrgrgjrttogrigjriogjrgjrpgjigjiirojgergjrgo;jgko;gjrokgjrtiojgfpgkdogpkgopkgpdg;kfjhkgjgjkkkkkkkkkkjjjjjjjjjjjjjjdfgjdlkpgegoepkopkpojhloihljkj;jlhohlihiiohyohgiohuihlhoihoihyoiyoiuoiyoyoioiyoypojojhjtyjktukuiyuohkhjmjymuj,io;;;;likiyttyhjkl;plokijjuythjkliiukjyhtyujikoytgyuhijuyuilkjghjhkkkkkkl;kl;lklktdterfghhgjkjkhljkhjknbeogjeofgjkegoefkgopkdfpovjdfopbjdfopekbobjvjdfpobsgodfbfsdpbkfgiobjerfpdovjgiojdfovjdfgiobjdsfoplbjfgoibjdfbnfogijbkjdfoibndfobjnfiobjdfobnfdobjdfiobjfbnjrfopbgjrgobjrobkrojbhrobjfgjinberjgfgiobjkgriofgjrtoigfigbrgjbrgoigfdopjbofggkonbkgfpbkmfgklbvmfogkbkflgbmsdkmvdfkbnfgkbdfgbnghnhgffmnhj,j,jgkk,j,jk,.kjh.kl.ugkmhjhnhghbthnyumhgjmhgj,mjkghtkmghmxfngdngmhjfm,jh,jk,jkkyjhgfbfggrrtkuukukyjyjtjyjtjuyyynyynyyynyynh'
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
       end
 
       it "category_idが1では出品できないこと" do

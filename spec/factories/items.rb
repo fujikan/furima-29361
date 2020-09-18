@@ -4,7 +4,7 @@ FactoryBot.define do
      image.image.attach(io: File.open('public/images/test_image.png'),filename:'test_image.png')
    end
     name{'小半'}
-    description{'gvjeofpkjerigedogji'}
+    description{'gvjeofpkjjooerigedogji'}
     category_id{'2'}
     condition_id{'2'}
     postage_id{'2'}
