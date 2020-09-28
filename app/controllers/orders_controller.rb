@@ -5,8 +5,29 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def create
+    @order = LoseItem.new(lose_item_params)
+    @item = Item.find(params[:item_id])
+    @order.save
+    if @order.valid?
+      pay_item
+      return redirect_to root_path
+    else
+      render 'index'
+    end
+  end
+
   private
-  def item_params
-  params.require(:item).permit(:name,:description,:category_id,:condition_id,:postage_id,:prefecture_id,:handling_time_id,:price,:image).merge(user_id: current_user.id)
+  def lose_item_params
+  params.permit(:post_code,:prefecture,:city,:address,:building_name,:phone_number,:item_id,:token).merge(user_id: current_user.id)
+  end
+
+  def pay_item
+    Payjp.api_key = "sk_test_d12de9e3264e9d8b4060dc9a"
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: lose_item_params[:token],
+      currency:'jpy'
+    )
   end
 end
