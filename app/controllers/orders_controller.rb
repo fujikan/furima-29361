@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   private
   def lose_item_params
-  params.permit(:post_code,:prefecture,:city,:address,:building_name,:phone_number,:item_id,:token).merge(user_id: current_user.id)
+  params.permit(:post_code,:prefecture_id,:city,:address,:building_name,:phone_number,:item_id,:token).merge(user_id: current_user.id)
   end
 
   def pay_item
