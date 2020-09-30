@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :lose_item do
+    token{'djghhfgdkgjdgekgjegjerhgdgfkaegjogdgefh'}
     post_code{'123-4567'}
     prefecture_id{'29'}
     city{'伊丹市瑞穂町'}

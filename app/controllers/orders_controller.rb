@@ -1,19 +1,19 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
+    # @item = Item.find(params[:item_id])
   end
 
   def create
     @order = LoseItem.new(lose_item_params)
-    @item = Item.find(params[:item_id])
-    @order.save
+    # @item = Item.find(params[:item_id])
     if @order.valid?
-      pay_item
-      return redirect_to root_path
+    pay_item
+    @order.save
+    return redirect_to root_path
     else
-      render 'index'
+    render 'index'
     end
   end
 
@@ -23,11 +23,15 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_d12de9e3264e9d8b4060dc9a"
-    Payjp::Charge.create(
-      amount: @item.price,
-      card: lose_item_params[:token],
-      currency:'jpy'
-    )
+  Payjp.api_key = "sk_test_d12de9e3264e9d8b4060dc9a"
+  Payjp::Charge.create(
+  amount: @item.price,
+  card: lose_item_params[:token],
+  currency:'jpy'
+  )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end

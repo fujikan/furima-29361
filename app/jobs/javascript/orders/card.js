@@ -2,6 +2,7 @@ const pay = ()=> {
   Payjp.setPublicKey("pk_test_6dcbcd738a09e809d7c3dbb8");
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
+    
     e.preventDefault();
 
     const formResult = document.getElementById("charge-form");

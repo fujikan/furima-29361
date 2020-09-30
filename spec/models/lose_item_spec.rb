@@ -7,7 +7,7 @@ RSpec.describe LoseItem, type: :model do
 
   describe '商品購入機能' do
     context '商品購入がうまくいくとき' do
-       it "post_code、prefecture_id、city、address、phone_numberが存在すれば登録できること" do
+       it "post_code、prefecture_id、city、address、phone_number、tokenが存在すれば登録できること" do
          expect(@order).to be_valid
        end
     end
@@ -76,7 +76,12 @@ RSpec.describe LoseItem, type: :model do
         expect(@order.errors.full_messages).to include("Post code is invalid")
       end
 
-
+      it "tokenが空では購入できないこと" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+      
     end
   end
 end
