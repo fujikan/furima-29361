@@ -3,21 +3,21 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if @item.purchaser != nil || current_user.id == @item.user_id
-      redirect_to root_path
-    end
+  if @item.purchaser != nil || current_user.id == @item.user_id
+  redirect_to root_path
+  end
   end
 
 
   def create
-    @order = LoseItem.new(lose_item_params)
-    if @order.valid?
-    pay_item
-    @order.save
-    return redirect_to root_path
-    else
-    render 'index'
-    end
+  @order = LoseItem.new(lose_item_params)
+  if @order.valid?
+  pay_item
+  @order.save
+  return redirect_to root_path
+  else
+  render 'index'
+  end
   end
 
   private
