@@ -1,13 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
-  def index
-    # @item = Item.find(params[:item_id])
-  end
 
   def create
     @order = LoseItem.new(lose_item_params)
-    # @item = Item.find(params[:item_id])
     if @order.valid?
     pay_item
     @order.save
@@ -23,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-  Payjp.api_key = "sk_test_d12de9e3264e9d8b4060dc9a"
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
   amount: @item.price,
   card: lose_item_params[:token],
