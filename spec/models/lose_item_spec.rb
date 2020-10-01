@@ -81,6 +81,12 @@ RSpec.describe LoseItem, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
       end
+
+      it "phone_numberに-が入っていると購入できないこと" do
+        @order.phone_number = '090-4240-6416'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
       
     end
   end
