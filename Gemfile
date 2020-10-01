@@ -73,3 +73,7 @@ gem 'active_hash'
 gem 'payjp'
 	
 gem 'pry-rails'
+
+group :development do
+  gem 'rubocop', require: false
+end
