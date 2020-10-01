@@ -76,7 +76,7 @@ Things you may want to cover:
 ### Association
 * belong_to :item
 * belong_to :user
-* has_one :address
+* has_one :order
 
 
 * How to run the test suite
